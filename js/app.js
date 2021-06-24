@@ -26,12 +26,12 @@ vanillaPress.init();
 
 console.log(posts);
 
-for ( var i = 0; i < posts.length; i++ ) {
+for ( let i = 0; i < posts.length; i++ ) {
   displayPost( posts[i].id, posts[i].title, posts[i].content, posts[i].slug ) ;
 }
 
 function displayPost ( id, title, content, slug ) {
-  var postContainer = document.createElement('article');
+  const postContainer = document.createElement('article');
   postContainer.setAttribute( 'id', postId( id ) );
   postContainer.appendChild( displayPostTitle( title, slug ) );
   postContainer.appendChild( displayPostBody( content ) );
@@ -39,8 +39,8 @@ function displayPost ( id, title, content, slug ) {
 }
 
 function displayPostTitle ( title, slug ) {
-  var postTitle = document.createElement( 'h2' );
-  var postLink = document.createElement( 'a' );
+  const postTitle = document.createElement( 'h2' );
+  const postLink = document.createElement( 'a' );
   postLink.setAttribute( 'href', hashLink( slug ) )
   postLink.innerText = title;
   postTitle.appendChild( postLink );
@@ -48,7 +48,7 @@ function displayPostTitle ( title, slug ) {
 }
 
 function displayPostBody ( content ) {
-  var postContent = document.createElement( 'div' );
+  const postContent = document.createElement( 'div' );
   postContent.innerHTML = content;
   return postContent
 }
