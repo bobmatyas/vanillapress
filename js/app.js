@@ -28,12 +28,13 @@ vanillaPress.init();
 //console.log(posts);
 
 /* home link */
-document.querySelector( '#siteName a' ).addEventListener( 'click', function(event) {
-    event.preventDefault();
-    clearPosts();
-    showPosts( posts );
-  });
+document.querySelector( '#siteName a' ).addEventListener( 'click', (e)=> navigateHome( e, posts ));
 
+function navigateHome (e, posts) {
+  e.preventDefault();
+  clearPosts();
+  showPosts( posts );
+}
 
 function showPosts( posts ) {
   for ( let i = 0; i < posts.length; i++ ) {
@@ -76,7 +77,6 @@ function displaySinglePost( e, id, title, content, slug ) {
   e.preventDefault();
   clearPosts();
   displayPost( id, title, content, slug );
-
 }
 
 function displaySinglePostTitle( title ) {
@@ -92,4 +92,3 @@ function postId ( id ) {
 function hashLink ( slug ) {
   return `#${slug}`
 }
-
