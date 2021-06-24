@@ -27,20 +27,23 @@ vanillaPress.init();
 console.log(posts);
 
 for ( var i = 0; i < posts.length; i++ ) {
-  displayPost( posts[i].id, posts[i].title, posts[i].content) ;
+  displayPost( posts[i].id, posts[i].title, posts[i].content, posts[i].slug ) ;
 }
 
-function displayPost ( id, title, content ) {
+function displayPost ( id, title, content, slug ) {
   var postContainer = document.createElement('article');
   postContainer.setAttribute( 'id', postId( id ) );
-  postContainer.appendChild( displayPostTitle( title ) );
+  postContainer.appendChild( displayPostTitle( title, slug ) );
   postContainer.appendChild( displayPostBody( content ) );
   document.getElementById( 'pageContent' ).appendChild( postContainer );
 }
 
-function displayPostTitle ( title ) {
+function displayPostTitle ( title, slug ) {
   var postTitle = document.createElement( 'h2' );
-  postTitle.innerText = title;
+  var postLink = document.createElement( 'a' );
+  postLink.setAttribute( 'href', hashLink( slug ) )
+  postLink.innerText = title;
+  postTitle.appendChild( postLink );
   return postTitle;
 }
 
@@ -54,5 +57,7 @@ function postId ( id ) {
   return `id${id}`
 }
 
-
+function hashLink ( slug ) {
+  return `#${slug}`
+}
 
