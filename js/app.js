@@ -15,7 +15,9 @@ var vanillaPress = {
     // Add any functions here you want
     // to run to start the application
     console.log( jsonData );
-    var posts = JSON.parse(jsonData);
+
+    localStorage.setItem( 'siteData', jsonData );
+    var posts = JSON.parse( localStorage.getItem( 'siteData' ) );
     showPosts( posts );
   }
 
