@@ -14,11 +14,14 @@ var vanillaPress = {
 
     // Add any functions here you want
     // to run to start the application
-    console.log( jsonData );
+    //console.log( jsonData );
 
-    localStorage.setItem( 'siteData', jsonData );
-    var posts = JSON.parse( localStorage.getItem( 'siteData' ) );
-    showPosts( posts );
+    model.init();
+    view.init();
+
+    //localStorage.setItem( 'siteData', jsonData );
+    //var posts = JSON.parse( localStorage.getItem( 'siteData' ) );
+    //showPosts( posts );
   }
 
 };
@@ -30,6 +33,9 @@ vanillaPress.init();
 //console.log(posts);
 
 /* home link */
+
+/*
+
 document.querySelector( '#siteName a' ).addEventListener( 'click', (e)=> navigateHome( e, posts ));
 
 function navigateHome (e, posts) {
@@ -94,3 +100,4 @@ function postId ( id ) {
 function hashLink ( slug ) {
   return `#${slug}`
 }
+*/
