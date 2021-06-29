@@ -64,14 +64,19 @@ router.loadContent = function() {
   var slug = router.getSlug();
 
   view.clearContent();
+  
+  console.log( slug )
 
-  if( null === slug ) {
+  if( 'blog' === slug ) {
 
     view.loadBlogPosts();
+ 
+  } else if( 'home' === slug ) {
+
 
   } else {
 
-    view.loadBlogPost(slug);
+    view.loadContent( slug );
 
   }
 

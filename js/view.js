@@ -49,14 +49,36 @@ view.loadBlogPosts = function() {
  *
  */
 
-view.loadBlogPost = function( url ) {
+view.loadBlogPost = function( url, type ) {
 
-  var post = model.getPost( url ),
-      titleEl = helpers.getPageTitleEl(),
+  var post;
+
+  console.log( type );
+
+  if ( 'page' === type) {
+
+    post = model.getPages();
+
+  } else {
+
+    post = model.getPosts();
+
+  }
+
+  for( i = 0, max = post.length; i < max; i++  ) {
+
+    if (post[i].slug === url) {
+      console.log('match');
+      var titleEl = helpers.getPageTitleEl(),
       contentEl = helpers.getPageContentEl();
 
-  titleEl.innerHTML = post.title;
-  contentEl.innerHTML = post.content;
+      titleEl.innerHTML = post[i].title;
+      contentEl.innerHTML = post[i].content;
+      
+      break;
+  
+    }
+  }
 
 };
 
@@ -67,6 +89,25 @@ view.loadBlogPost = function( url ) {
  * @param string {url} URL for post or page
  */
 
+view.loadContent = function( url ) {
+
+  console.log( 'load content' );
+  console.log( url );
+
+  var pages = model.getPages();
+
+  for( i = 0, max = pages.length; i < max; i++  ) {
+    
+    if (pages[i].slug === url) {
+      
+      return view.loadBlogPost( url, 'page' );
+    
+    }
+    
+  }
+  
+  return view.loadBlogPost( url, 'post' );
+}
 
 
 /**
@@ -92,7 +133,7 @@ view.clearContent = function() {
 
 view.loadMenu = function( ) {
 
-  var pages = model.getLocalStore()['pages'];
+  var pages = model.getPages();
       mainMenu = document.querySelector( '#mainNav ul' );
  
   for( i = 0, max = pages.length; i < max; i++  ) {
@@ -121,9 +162,7 @@ view.createMenuItem = function ( page ) {
   menuLink.appendChild( menuText );
   menuLink.href = '#' + page.slug;
   menuItemEl.appendChild( menuLink );
-
-  console.log( menuItemEl );
-
+ 
   return menuItemEl;
 
 }
