@@ -68,7 +68,7 @@ view.loadBlogPost = function( url, type ) {
   for( i = 0, max = post.length; i < max; i++  ) {
 
     if (post[i].slug === url) {
-      console.log('match');
+
       var titleEl = helpers.getPageTitleEl(),
       contentEl = helpers.getPageContentEl();
 
@@ -97,13 +97,17 @@ view.loadContent = function( url ) {
   var pages = model.getPages();
 
   for( i = 0, max = pages.length; i < max; i++  ) {
-    
+
     if (pages[i].slug === url) {
       
       return view.loadBlogPost( url, 'page' );
     
+    } else if ( null === url ) {
+
+      return view.loadBlogPost( 'home', 'page' );
+
     }
-    
+ 
   }
   
   return view.loadBlogPost( url, 'post' );

@@ -71,9 +71,6 @@ router.loadContent = function() {
 
     view.loadBlogPosts();
  
-  } else if( 'home' === slug ) {
-
-
   } else {
 
     view.loadContent( slug );
