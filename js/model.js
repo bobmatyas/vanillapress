@@ -64,6 +64,12 @@ model.getPost = function( slug ) {
   * @return pages {array} Array of pages
   */
 
+ model.getPages = function() {
+
+  var pages = model.getLocalStore()['pages'];
+  return pages;
+
+}
 
 
 
