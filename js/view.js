@@ -15,7 +15,7 @@
 
 view.init = function() {
 
-  // Load menu
+  view.loadMenu();
 
 }
 
@@ -90,7 +90,21 @@ view.clearContent = function() {
  * @return object {mainEl} Final markup for menu
  */
 
+view.loadMenu = function( ) {
 
+  var pages = model.getLocalStore()['pages'];
+      mainMenu = document.querySelector( '#mainNav ul' );
+
+
+  console.log( mainMenu );
+  
+  for( i = 0, max = pages.length; i < max; i++  ) {
+  
+    mainMenu.appendChild( view.createMenuItem( pages[i] ) );
+  
+  }
+
+}
 
 
 /**
@@ -100,6 +114,22 @@ view.clearContent = function() {
  * @return object {menuItemEl} Final markup for menu item
  */
 
+
+view.createMenuItem = function ( page ) {
+  
+  var  menuItemEl = document.createElement( 'li' ),
+       menuLink = document.createElement( 'a' ),
+       menuText = document.createTextNode( page.title );
+       
+  menuLink.appendChild( menuText );
+  menuLink.href = '#' + page.slug;
+  menuItemEl.appendChild( menuLink );
+
+  console.log( menuItemEl );
+
+  return menuItemEl;
+
+}
 
 
 

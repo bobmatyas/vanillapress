@@ -17,6 +17,7 @@ router.init = function() {
 
   router.loadContent();
   router.listenPageChange();
+  view.loadMenu();
 
 };
 
