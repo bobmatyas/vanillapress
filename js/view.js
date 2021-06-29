@@ -14,8 +14,6 @@
   */
 view.init = function() {
 
-    view.loadBlogPosts();
-
 };
 
 /**
@@ -38,6 +36,24 @@ view.loadBlogPosts = function() {
   primaryContentEl.appendChild( postsMarkup );
 
 }
+
+/**
+ * Loads a single blog post.
+ * 
+ * @param slug {string} Post to create markup for single posts
+ */
+
+view.loadBlogPost = function( slug ) {
+
+  var post = model.getPost( slug );
+      titleEl = helpers.getPageTitleEl();
+      contentEl = helpers.getPageContentEl();
+      
+  titleEl.innerHTML = post.title;
+  contentEl.innerHTML = post.content;
+
+};
+
 
 /**
  * Creates Markup for Blog Posts
@@ -66,3 +82,18 @@ view.createPostMarkup = function( post ) {
   return articleEl;
 
 } 
+
+/**
+ * Clears title and main content from page
+ * 
+ */
+
+view.clearContent = function() {
+
+  var titleEl = helpers.getPageTitleEl();
+      contentEl = helpers.getPageContentEl();
+      
+  titleEl.innerHTML = '';
+  contentEl.innerHTML = '';
+
+}

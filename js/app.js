@@ -17,7 +17,7 @@ var vanillaPress = {
     //console.log( jsonData );
 
     model.init();
-    view.init();
+    router.init();
 
     //localStorage.setItem( 'siteData', jsonData );
     //var posts = JSON.parse( localStorage.getItem( 'siteData' ) );
