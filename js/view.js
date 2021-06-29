@@ -94,10 +94,7 @@ view.loadMenu = function( ) {
 
   var pages = model.getLocalStore()['pages'];
       mainMenu = document.querySelector( '#mainNav ul' );
-
-
-  console.log( mainMenu );
-  
+ 
   for( i = 0, max = pages.length; i < max; i++  ) {
   
     mainMenu.appendChild( view.createMenuItem( pages[i] ) );
