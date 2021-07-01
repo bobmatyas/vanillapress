@@ -91,20 +91,17 @@ view.loadBlogPost = function( url, type ) {
 
 view.loadContent = function( url ) {
 
-  console.log( 'load content' );
-  console.log( url );
-
   var pages = model.getPages();
 
   for( i = 0, max = pages.length; i < max; i++  ) {
 
     if (pages[i].slug === url) {
       
-      return view.loadBlogPost( url, 'page' );
+        return view.loadBlogPost( url, 'page' );
     
     } else if ( null === url ) {
 
-      return view.loadBlogPost( 'home', 'page' );
+        return view.loadBlogPost( 'home', 'page' );
 
     }
  
