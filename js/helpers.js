@@ -2,12 +2,14 @@
  * Helper file for extra helper functions
  */
 
+/**
+ * Main helper object
+ */
 var helpers = {};
 
 /**
- * Gets the page title from the DOM
- *
- * @returns title {DOM} The title of the page
+ * Gets page title from the DOM
+ * @return {Object} Main page title DOM object
  */
 helpers.getPageTitleEl = function() {
 
@@ -16,9 +18,8 @@ helpers.getPageTitleEl = function() {
 };
 
 /**
- * Gets the page content wrapper from the DOM
- *
- * @returns content {DOM} The content wrapper for the page
+ * Gets page content from the DOM
+ * @return {Object} Main content DOM object
  */
 helpers.getPageContentEl = function() {
 

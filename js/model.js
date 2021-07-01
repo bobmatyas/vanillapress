@@ -59,17 +59,19 @@ model.getPost = function( slug ) {
 }
 
 /**
-  * Gets pages from local store
-  *
-  * @return pages {array} Array of pages
-  */
+ * Gets pages from local store
+ *
+ * @return {Object[]} pages Array of page objects
+ */
 
- model.getPages = function() {
 
-  var pages = model.getLocalStore()['pages'];
-  return pages;
-
-}
+/**
+ * Get a single page based on url slug
+ *
+ * @param {string} slug The slug for the page
+ * @return {Object} page  Single page object
+ *
+ */
 
 
 
