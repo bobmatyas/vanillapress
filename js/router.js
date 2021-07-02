@@ -59,17 +59,17 @@ router.listenPageChange = function() {
 
 router.loadContent = function() {
 
-  var slug = router.getSlug();
+  var url = router.getSlug();
 
   view.clearContent();
 
-  if( null === slug ) {
+  if( null === url ) {
 
    view.loadBlogPosts();
 
   } else {
 
-   view.loadBlogPost( slug );
+   view.loadBlogPost( url );
 
   }
 
