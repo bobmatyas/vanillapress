@@ -59,17 +59,21 @@ router.listenPageChange = function() {
 
 router.loadContent = function() {
 
-  var url = router.getSlug();
+  var slug = router.getSlug();
 
   view.clearContent();
 
-  if( null === url ) {
+  if( null === slug ) {
 
-   view.loadBlogPosts();
+    view.loadSingleContent( 'home' );
 
+  } else if ( 'blog' === slug ) {
+    
+    view.loadBlogPosts();
+  
   } else {
 
-   view.loadBlogPost( url );
+   view.loadSingleContent( slug );
 
   }
 

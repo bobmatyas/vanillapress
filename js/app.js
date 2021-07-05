@@ -19,6 +19,7 @@ vanillaPress.init = function() {
 
   model.init();
   router.init();
+  view.init();
 
 };
 
