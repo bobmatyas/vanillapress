@@ -8,19 +8,19 @@
  * The main app object.
  *
  */
-var vanillaPress = {
+var vanillaPress = {};
 
-  init: function() {
 
-    // Add any functions here you want
-    // to run to start the application
-    model.init();
-    router.init();
+/**
+ * Initializes the VanillaPress app
+ *
+ */
+vanillaPress.init = function() {
 
-  }
+  model.init();
+  router.init();
+  view.init();
 
 };
 
 vanillaPress.init();
-
-// Add your custom code starting here:

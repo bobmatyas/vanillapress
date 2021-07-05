@@ -2,12 +2,61 @@
  * Helper file for extra helper functions
  */
 
+/**
+ * Main helper object
+ */
 var helpers = {};
 
+
 /**
- * Gets the page title from the DOM
+ * Creates a list item with a link inside for menus
  *
- * @returns title {DOM} The title of the page
+ * @param {Object} contentObj Page object to create menu item for
+ * @return {Object} menuItemEl List item DOM object
+ */
+ helpers.createMenuItem = function( contentObj ) {
+
+   var menuItemEl = document.createElement( 'li' );
+
+   menuItemEl.appendChild( helpers.createLink( contentObj ) );
+
+   return menuItemEl;
+
+ };
+
+/**
+ * Creates link
+ *
+ * @param {Object} contentObj Content object to create link for
+ * @return {Object} linkEl Link object
+ */
+helpers.createLink = function( contentObj ) {
+
+  var linkEl = document.createElement( 'a' ),
+     linkTitle = document.createTextNode( contentObj.title );
+
+  if ( 'home' !== contentObj.slug ) {
+    linkEl.href = '#' + contentObj.slug;
+  } else {
+    linkEl.href = '#';
+  }
+  linkEl.appendChild( linkTitle );
+
+  return linkEl;
+
+};
+
+/**
+ * Gets the main menu element
+ * @return {Object} Main menu DOM object
+ */
+helpers.getMainMenuEl = function(){
+ return document.querySelector( '#mainNav ul' );
+};
+
+/**
+ * Gets page title from the DOM
+ * @return {Object} Main page title DOM object
  */
 helpers.getPageTitleEl = function() {
 
@@ -16,9 +65,8 @@ helpers.getPageTitleEl = function() {
 };
 
 /**
- * Gets the page content wrapper from the DOM
- *
- * @returns content {DOM} The content wrapper for the page
+ * Gets page content from the DOM
+ * @return {Object} Main content DOM object
  */
 helpers.getPageContentEl = function() {
 

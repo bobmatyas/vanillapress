@@ -6,7 +6,6 @@
  * The main router object.
  *
  */
-
 var router = {};
 
 /**
@@ -17,14 +16,13 @@ router.init = function() {
 
   router.loadContent();
   router.listenPageChange();
-  view.loadMenu();
 
 };
 
 /**
  * Gets the slug from the URL
  *
- * @return slug {string} Slug from URL
+ * @return {string} slug Slug from URL
  */
 router.getSlug = function() {
 
@@ -64,16 +62,18 @@ router.loadContent = function() {
   var slug = router.getSlug();
 
   view.clearContent();
-  
-  console.log( slug )
 
-  if( 'blog' === slug ) {
+  if( null === slug ) {
 
-    view.loadBlogPosts();
- 
-  } else {
+   view.loadSingleContent( 'home' );
 
-    view.loadContent( slug );
+ } else if ( 'blog' === slug ) {
+
+   view.loadBlogPosts();
+
+ } else {
+
+   view.loadSingleContent( slug );
 
   }
 
