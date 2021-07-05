@@ -26,12 +26,32 @@
   */
 
  editor.toggleEditor = function() {
-    
+   
+     
     var editor = document.getElementById( 'editor' )
-    var editorToggle = document.getElementById( 'editorToggle' );
+        editorToggle = document.getElementById( 'editorToggle' );
+        editorIsOpen = localStorage.getItem('editorOpen');
 
-    editor.classList.remove( 'hidden' );
-    editorToggle.classList.remove( 'hidden' );
+    console.log(editorToggle);
+    console.log(editorIsOpen);
+
+    if ( 'false' === editorIsOpen ) { 
+        localStorage.setItem('editorOpen', true);   
+        editor.classList.remove( 'hidden' );
+        editorToggle.classList.remove( 'hidden' );
+    } else {
+        localStorage.setItem('editorOpen', false);  
+        editor.classList.add( 'hidden' );
+        editorToggle.classList.remove( 'hidden' );   
+    }
+
+    
+
+
+
+
+    //localStorage.setItem('editorOpen', true);
+    console.log( 'clicked' );
 
 };
 

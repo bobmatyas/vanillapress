@@ -17,6 +17,7 @@ var view = {};
 view.init = function() {
 
   view.createMainMenu();
+  editor.toggleEditor();
 
 }
 
