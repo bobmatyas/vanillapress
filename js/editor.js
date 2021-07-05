@@ -42,7 +42,7 @@
     } else {
         localStorage.setItem('editorOpen', false);  
         editor.classList.add( 'hidden' );
-        editorToggle.classList.remove( 'hidden' );   
+        editorToggle.classList.add( 'hidden' );   
     }
 
     
