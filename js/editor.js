@@ -81,6 +81,37 @@ editor.getContent = function() {
 }
 
  /**
+  * Preview page title change 
+  *
+  */
+
+
+editor.modifyTitle = function( e ) {
+
+    var pageTitle = document.getElementById( 'pageTitle' );
+    pageTitle.innerText = e.target.value;
+
+}
+
+/**
+  * Preview page title change 
+  *
+  */
+
+editor.modifyContent = function( e ) {
+
+    var pageContent = document.getElementById( 'pageContent' );
+    pageContent.innerText = e.target.value;
+
+}
+
+var editTitle = document.querySelector( 'input#editTitle' );
+editTitle.addEventListener( 'input', ( e ) => editor.modifyTitle(e) );
+
+var editContent = document.querySelector( 'textarea#editContent' );
+editContent.addEventListener( 'input', ( e ) => editor.modifyContent(e) );
+
+/**
   * Close Editor on page change 
   *
   */
@@ -90,7 +121,7 @@ editor.getContent = function() {
     var editorScreen = document.getElementById( 'editor' )
     editorToggle = document.getElementById( 'editorToggle' );
     editorIsOpen = localStorage.getItem('editorOpen');
-    
+
     localStorage.setItem('editorOpen', false);  
     editorScreen.classList.add( 'hidden' );
     editorToggle.classList.add( 'hidden' );   
