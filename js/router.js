@@ -62,6 +62,7 @@ router.loadContent = function() {
   var slug = router.getSlug();
 
   view.clearContent();
+  editor.closeEditor();
 
   if( null === slug ) {
 
