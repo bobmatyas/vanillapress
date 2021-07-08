@@ -94,7 +94,7 @@ editor.modifyTitle = function( e ) {
 }
 
 /**
-  * Preview page title change 
+  * Preview page content change 
   *
   */
 
