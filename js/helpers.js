@@ -30,6 +30,7 @@ var helpers = {};
  * @param {Object} contentObj Content object to create link for
  * @return {Object} linkEl Link object
  */
+
 helpers.createLink = function( contentObj ) {
 
   var linkEl = document.createElement( 'a' ),
@@ -50,6 +51,7 @@ helpers.createLink = function( contentObj ) {
  * Gets the main menu element
  * @return {Object} Main menu DOM object
  */
+
 helpers.getMainMenuEl = function(){
  return document.querySelector( '#mainNav ul' );
 };
@@ -58,6 +60,7 @@ helpers.getMainMenuEl = function(){
  * Gets page title from the DOM
  * @return {Object} Main page title DOM object
  */
+
 helpers.getPageTitleEl = function() {
 
   return document.getElementById( 'pageTitle' );
@@ -68,8 +71,21 @@ helpers.getPageTitleEl = function() {
  * Gets page content from the DOM
  * @return {Object} Main content DOM object
  */
+
 helpers.getPageContentEl = function() {
 
   return document.getElementById( 'pageContent' );
 
 };
+
+/** 
+ * Remove all children from node
+ */
+
+helpers.removeChildren = function( parent ) {
+
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild);
+  }
+
+}

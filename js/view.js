@@ -75,19 +75,30 @@ view.loadSingleContent = function( slug ) {
  * Clears the page title and content from the page
  *
  */
+
 view.clearContent = function() {
   var titleEl = helpers.getPageTitleEl(),
       contentEl = helpers.getPageContentEl();
 
   titleEl.innerHTML = '';
   contentEl.innerHTML = '';
+
 };
 
+
+view.clearMainMenu = function() {
+
+    var mainMenuEl = helpers.getMainMenuEl();
+    helpers.removeChildren( mainMenuEl );
+    view.createMainMenu();
+
+}
 
 /**
  * Creates Main Menu Links for Pages
  *
  */
+
 view.createMainMenu = function() {
 
   var pages = model.getPages(),

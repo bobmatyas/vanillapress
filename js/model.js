@@ -23,6 +23,7 @@ model.init = function() {
  *
  * @return {Object[]} posts Array of posts
  */
+
 model.getPosts = function() {
 
   var posts = model.getLocalStore().posts;
@@ -108,6 +109,7 @@ model.getLocalStore = function() {
  *
  * @param {Object} store Native JavaScript object with site data
  */
+
 model.updateLocalStore = function( store ) {
 
   localStorage.setItem( 'vanillaPress', store );
@@ -121,5 +123,11 @@ model.updateLocalStore = function( store ) {
 model.removeLocalStore = function() {
 
   localStorage.removeItem( 'vanillaPress' );
+
+}
+
+model.updateAfterEdit = function( store ) {
+ 
+  //localStorage.setItem( 'vanillaPress', store ) );
 
 }
