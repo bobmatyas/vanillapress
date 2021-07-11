@@ -144,7 +144,6 @@ var editUpdateButton = document.getElementById( 'editUpdateBtn' );
 editUpdateButton.addEventListener( 'click', ( e ) => editor.updateButton( e ) );
 
 editor.updateButton = function( e ) {
-
         
     e.preventDefault();
     editor.updateContent( editor.findSlug( router.getSlug() ) );
@@ -157,6 +156,12 @@ editor.updateButton = function( e ) {
   */
 
 editor.findSlug = function( slug ) {
+
+    if (slug === null ) {
+
+        return [ 'pages', 0];
+    
+    }
 
     var pages = model.getLocalStore().pages;
 
