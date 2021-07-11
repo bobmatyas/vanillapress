@@ -59,6 +59,11 @@ router.listenPageChange = function() {
 
 router.loadContent = function() {
 
+  
+  if ( (localStorage.getItem('editorChanged') === '1') ) {
+    return alert('You have unsaved changes. Please commit changes before navigating to a different page.');
+  }
+
   var slug = router.getSlug();
 
   view.clearContent();

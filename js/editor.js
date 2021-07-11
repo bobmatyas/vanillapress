@@ -27,6 +27,7 @@
 
  editor.toggleEditor = function() {
    
+    window.referrer = window.location.hash;
 
     if ( window.location.hash === '#blog' )  {
         return alert('This page cannot be edited. It is auto-generated based on your posts. Edit your individual posts instead! :)');
@@ -43,7 +44,8 @@
         editorToggle.classList.remove( 'hidden' );
         document.getElementById( 'editTitle' ).value = editor.getContentTitle();
         document.getElementById( 'editContent' ).value = editor.getContent();
-  
+        document.getElementById( 'slug' ).value = window.location.hash;
+
     } else {
   
         localStorage.setItem('editorOpen', false);  
@@ -98,6 +100,7 @@ editor.modifyTitle = function( e ) {
 
     var pageTitle = document.getElementById( 'pageTitle' );
     pageTitle.innerText = e.target.value;
+    localStorage.setItem('editorChanged', 1);   
 
 }
 
@@ -110,6 +113,7 @@ editor.modifyContent = function( e ) {
 
     var pageContent = document.getElementById( 'pageContent' );
     pageContent.innerText = e.target.value;
+    localStorage.setItem('editorChanged', 1);   
 
 }
 
@@ -146,7 +150,17 @@ editUpdateButton.addEventListener( 'click', ( e ) => editor.updateButton( e ) );
 editor.updateButton = function( e ) {
         
     e.preventDefault();
-    editor.updateContent( editor.findSlug( router.getSlug() ) );
+    var slug = '';
+    if( "#" === window.location.hash ) {
+        slug = '';
+        
+    } else {
+        slug = document.getElementById( 'slug' ).value;
+        slug = slug.substr( 1 );
+    }
+    console.log(slug);
+
+    editor.updateContent( editor.findSlug( slug ) );
     view.clearMainMenu();
 
 }
@@ -157,7 +171,7 @@ editor.updateButton = function( e ) {
 
 editor.findSlug = function( slug ) {
 
-    if (slug === null ) {
+    if (slug === null || slug === '' ) {
 
         return [ 'pages', 0];
     
@@ -201,5 +215,6 @@ editor.updateContent = function( contentToUpdate ) {
     store = JSON.stringify( store );
 
     model.updateLocalStore( store );
+    localStorage.setItem('editorChanged', 0);
     
 }

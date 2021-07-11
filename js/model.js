@@ -14,7 +14,7 @@ var model = {};
  */
 model.init = function() {
 
-  //model.updateLocalStore( data );
+  model.updateLocalStore( data );
 
 }
 
