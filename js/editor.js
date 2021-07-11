@@ -27,7 +27,11 @@
 
  editor.toggleEditor = function() {
    
-     
+
+    if ( window.location.hash === '#blog' )  {
+        return alert('This page cannot be edited. It is auto-generated based on your posts. Edit your individual posts instead! :)');
+    }
+    
     var editorScreen = document.getElementById( 'editor' )
         editorToggle = document.getElementById( 'editorToggle' );
         editorIsOpen = localStorage.getItem('editorOpen');
