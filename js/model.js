@@ -16,8 +16,10 @@ model.init = function() {
 
   // Add conditional statement to check
   // if local store exists
-  model.updateLocalStore( data );
-
+  
+  if( false === model.checkLocalStore() ) {
+    model.updateLocalStore( data );
+  }
 }
 
 
@@ -185,6 +187,17 @@ model.updateContent = function( contentObj ) {
  * @return {Boolean} Boolean value for if local store already exists
  */
 
+model.checkLocalStore = function() {
+
+  var store = model.getLocalStore();
+
+  if( null === store ) {
+    return false;
+  } else {
+    return true;
+  }
+
+};
 
 /**
  * Gets content from local store

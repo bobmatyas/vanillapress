@@ -60,6 +60,7 @@ router.listenPageChange = function() {
 router.loadContent = function() {
 
   var slug = router.getSlug();
+      toggleEl = helpers.getEditorToggleEl();
 
   view.clearContent();
 
@@ -76,5 +77,13 @@ router.loadContent = function() {
     view.loadSingleContent( slug );
 
   }
+
+  editor.currentConent = model.getContent( slug );
+
+  if( false === toggleEl.classList.contains( 'hidden' ) ) {
+
+    editor.fillEditForm( editor.currentContent );
+
+  } 
 
 }
