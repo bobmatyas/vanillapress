@@ -120,10 +120,6 @@ helpers.getEditorContentEl = function() {
  * Gets editor form update button
  * @return {Object} Content form element
  */
- /**
-  * Gets editor content form element
-  * @return {Object} Content form element
-  */
- helpers.getEditorUpdateBtn = function() {
-   return document.getElementById( 'editUpdateBtn' );
- };
+helpers.getEditorUpdateBtnEl = function() {
+  return document.getElementById( 'editUpdateBtn' );
+};

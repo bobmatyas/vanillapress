@@ -59,7 +59,6 @@ view.loadBlogPosts = function() {
 
  };
 
-
 /**
 * Updates the main title for a page or post
 *

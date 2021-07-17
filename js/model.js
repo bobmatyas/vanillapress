@@ -14,6 +14,8 @@ var model = {};
  */
 model.init = function() {
 
+  // Add conditional statement to check
+  // if local store exists
   model.updateLocalStore( data );
 
 }
@@ -22,7 +24,7 @@ model.init = function() {
 /**
  * Get a single post or page based on the url slug
  *
- * @param {String} slug The slug for the post
+ * @param {string} slug The slug for the post
  * @return {Object} contentObj Single post or page
  *
  */
@@ -30,20 +32,23 @@ model.getContent = function( slug ) {
 
   var contentObj = model.getPost( slug );
 
+
+  // If post is not found, search pages
   if( null === contentObj ) {
     contentObj = model.getPage( slug );
   }
 
+  // If page not found, assign 404 error
   if( null === contentObj ) {
     contentObj = {
-      title: '404 Error',
-      content: 'Content not found'
+        title: '404 Error',
+        content: 'Content not found'
     }
   }
 
   return contentObj;
 
-}
+};
 
 
 /**
@@ -55,15 +60,12 @@ model.getContent = function( slug ) {
 model.getCurrentContent = function() {
 
   var slug = router.getSlug(),
-      contentObj;
-
-  if ( null === slug ) slug = 'home';
-
-  contentObj = model.getContent( slug );
+      contentObj = model.getContent( slug );
 
   return contentObj;
 
 };
+
 
 /**
  * Gets posts from local store
@@ -106,36 +108,38 @@ model.getPost = function( slug ) {
  *
  * @return {Object[]} pages Array of page objects
  */
- model.getPages = function() {
+model.getPages = function() {
 
-   var pages = model.getLocalStore().pages;
-   return pages;
+  var pages = model.getLocalStore().pages;
+  return pages;
 
- }
+}
 
 /**
  * Get a single page based on url slug
  *
- * @param {String} slug The slug for the page
+ * @param {string} slug The slug for the page
  * @return {Object} page  Single page object
  *
  */
- model.getPage = function( slug ) {
+model.getPage = function( slug ) {
 
-   var pages = model.getLocalStore().pages;
+  var pages = model.getLocalStore().pages;
 
-   // Get the post from store based on the slug
-   for( i = 0, max = pages.length; i < max; i++  ) {
+  if( null === slug ) slug = 'home';
 
-     if( slug === pages[i].slug ) {
-       return pages[i];
-     }
+  // Get the post from store based on the slug
+  for( i = 0, max = pages.length; i < max; i++  ) {
 
+   if( slug === pages[i].slug ) {
+     return pages[i];
    }
 
-   return null;
+  }
 
- }
+  return null;
+
+}
 
 
 /**
@@ -158,19 +162,29 @@ model.updateContent = function( contentObj ) {
     });
   }
 
-  if( 'page' === contentObj.type ) {
+  if ( 'page' === contentObj.type ) {
     store.pages.forEach( function( page ) {
       if( contentObj.id === page.id ) {
         page.title = contentObj.title;
         page.content = contentObj.content;
         page.modified = date.toISOString();
+        console.log( page );
       }
     });
   }
 
+
   model.updateLocalStore( JSON.stringify( store ) );
 
-}
+};
+
+
+/**
+ * Checks if local store already exists
+ *
+ * @return {Boolean} Boolean value for if local store already exists
+ */
+
 
 /**
  * Gets content from local store

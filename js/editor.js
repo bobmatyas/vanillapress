@@ -11,7 +11,6 @@ var editor = {};
 
 editor.currentContent = '';
 
-
 /**
  * Initializes the VanillaPress app
  *
@@ -33,7 +32,8 @@ editor.updateContent = function( event ) {
   event.preventDefault();
   model.updateContent( editor.currentContent );
 
-}
+};
+
 
 /**
  * Dynamically fills the edit form based on the url
@@ -42,25 +42,29 @@ editor.updateContent = function( event ) {
 editor.fillEditForm = function( contentObj ) {
 
   var titleForm = helpers.getEditorTitleEl(),
-      contentForm = helpers.getEditorContentEl();
+      contentForm = helpers.getEditorContentEl(),
+      updateBtn = helpers.getEditorUpdateBtnEl();
 
   titleForm.value = contentObj.title;
   contentForm.value = contentObj.content;
 
   editor.addFormListeners();
+  updateBtn.addEventListener(
+    'click',
+    editor.updateContent,
+    false
+  );
 
 };
 
-
 /**
- * Adds event listeners to the form
+ * Adds event listeners for the title and content
  *
  */
 editor.addFormListeners = function() {
 
   var titleForm = helpers.getEditorTitleEl(),
-      contentForm = helpers.getEditorContentEl(),
-      updateBtn = helpers.getEditorUpdateBtn();
+      contentForm = helpers.getEditorContentEl();
 
   titleForm.addEventListener(
     'input',
@@ -72,11 +76,6 @@ editor.addFormListeners = function() {
     view.updateContentFromForm,
     false
   );
-  updateBtn.addEventListener(
-    'click',
-    editor.updateContent,
-    false
-  );
 
 }
 
@@ -85,7 +84,7 @@ editor.addFormListeners = function() {
  * Listens for the editor toggle button
  *
  */
-editor.listenEditorToggle = function() {
+editor.listenEditorToggle = function( event ) {
 
   var toggleEl = helpers.getEditorToggleLink();
 
@@ -113,6 +112,10 @@ editor.toggle = function() {
   if( false === toggleEl.classList.contains( 'hidden' ) ) {
 
     editor.fillEditForm( editor.currentContent );
+
+  } else {
+
+    // Remove event listeners from editor
 
   }
 
