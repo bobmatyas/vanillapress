@@ -455,14 +455,14 @@ body {
   font-weight: lighter;
   position: relative;
 }
-#edit #deletePost {
+#edit #deleteContent {
   margin-left: 10px;
   font-size: .8rem;
 }
-#edit #deletePost a {
+#edit #deleteContent a {
   color: #999;
 }
-#edit #deletePost a.hidden {
+#edit #deleteContent a.hidden {
   display: none;
 }
 
