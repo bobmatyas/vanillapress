@@ -9,7 +9,7 @@
  */
 var editor = {};
 
-// Add currentPost property
+editor.currentContent = '';
 
 
 /**
@@ -28,7 +28,12 @@ editor.init = function() {
  * Updates local storage for post or page
  *
  */
+editor.updateContent = function( event ) {
 
+  event.preventDefault();
+  model.updateContent( editor.currentContent );
+
+}
 
 /**
  * Dynamically fills the edit form based on the url
@@ -54,7 +59,8 @@ editor.fillEditForm = function( contentObj ) {
 editor.addFormListeners = function() {
 
   var titleForm = helpers.getEditorTitleEl(),
-      contentForm = helpers.getEditorContentEl();
+      contentForm = helpers.getEditorContentEl(),
+      updateBtn = helpers.getEditorUpdateBtn();
 
   titleForm.addEventListener(
     'input',
@@ -66,7 +72,11 @@ editor.addFormListeners = function() {
     view.updateContentFromForm,
     false
   );
-  // Add listener for updateBtn
+  updateBtn.addEventListener(
+    'click',
+    editor.updateContent,
+    false
+  );
 
 }
 
@@ -95,14 +105,14 @@ editor.toggle = function() {
   var editorEl = helpers.getEditorEl(),
       toggleEl = helpers.getEditorToggleEl();
 
-  // Set editor.currentContent
+  editor.currentContent = model.getCurrentContent();
 
   editorEl.classList.toggle( 'hidden' );
   toggleEl.classList.toggle( 'hidden' );
 
   if( false === toggleEl.classList.contains( 'hidden' ) ) {
 
-    editor.fillEditForm( model.getCurrentContent() );
+    editor.fillEditForm( editor.currentContent );
 
   }
 
