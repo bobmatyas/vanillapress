@@ -33,7 +33,7 @@ editor.updateContent = function( event ) {
   event.preventDefault();
   model.updateContent( editor.currentContent );
   editor.unSavedContent = false;
-  // Call button animation
+  editor.animateSaveBtn();
 
 };
 
@@ -95,6 +95,25 @@ editor.loadEditForm = function( contentObj ) {
  *
  */
 
+editor.animateSaveBtn = function() {
+
+    var btn = helpers.getEditorUpdateBtnEl(),
+        saved = function() {
+          setTimeout( function() {
+            btn.innerText = 'Update';
+          }, 1000);
+        },
+        saving = function() {
+          setTimeout( function() {
+            'Saved!'
+            saved();
+          }, 900);
+        }
+    
+    btn.innerText = 'Saving...';
+
+    saving();
+};
 
 /**
  * Adds event listeners for the title and content
