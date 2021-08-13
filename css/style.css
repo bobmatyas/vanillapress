@@ -282,6 +282,11 @@ body {
   padding: 10px;
 }
 
+#view .container .content .primary pre {
+  font-size: inherit;
+  font-family: inherit;
+}
+
 #view .container .content .primary #pageContent article {
   margin: 10px 0 0;
   border-top: 1px #ededed solid;
@@ -455,14 +460,14 @@ body {
   font-weight: lighter;
   position: relative;
 }
-#edit #deletePost {
+#edit #deleteContent {
   margin-left: 10px;
   font-size: .8rem;
 }
-#edit #deletePost a {
+#edit #deleteContent a {
   color: #999;
 }
-#edit #deletePost a.hidden {
+#edit #deleteContent a.hidden {
   display: none;
 }
 

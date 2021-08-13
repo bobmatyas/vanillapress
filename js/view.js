@@ -2,31 +2,29 @@
  * View file for displaying content
  */
 
- /**
-  * Main view object
-  *
-  */
- var view = {};
+
+/**
+ * Main view object
+ *
+ */
+var view = {};
+
 
 /**
  * Calls initial View methods
  *
  */
-
 view.init = function() {
 
-  view.loadMenu();
+  view.createMainMenu();
 
 }
-
-
 
 
 /**
  * Gets blog posts and appends them to the page
  *
  */
-
 view.loadBlogPosts = function() {
 
   var posts = model.getPosts(),
@@ -44,78 +42,54 @@ view.loadBlogPosts = function() {
 
 };
 
+
 /**
- * Displays a single post on the page based on URL
+ * Displays a single post or page based on URL
  *
  */
+ view.loadSingleContent = function( slug ) {
 
-view.loadBlogPost = function( url, type ) {
+   var contentObj = model.getContent( slug ),
+       titleEl = helpers.getPageTitleEl(),
+       contentEl = helpers.getPageContentEl();
 
-  var post;
 
-  console.log( type );
+   titleEl.innerHTML = contentObj.title;
+   contentEl.innerHTML = contentObj.content;
 
-  if ( 'page' === type) {
+ };
+ 
 
-    post = model.getPages();
+/**
+* Updates the main title for a page or post
+* @param {String} title The title for a post or page
+*/
+view.updateTitle = function( title ) {
 
-  } else {
+  var titleEl = helpers.getPageTitleEl();
 
-    post = model.getPosts();
-
-  }
-
-  for( i = 0, max = post.length; i < max; i++  ) {
-
-    if (post[i].slug === url) {
-
-      var titleEl = helpers.getPageTitleEl(),
-      contentEl = helpers.getPageContentEl();
-
-      titleEl.innerHTML = post[i].title;
-      contentEl.innerHTML = post[i].content;
-      
-      break;
-  
-    }
-  }
+  titleEl.innerHTML = title;
 
 };
 
 
 /**
- * Displays a single post or page based on URL
- *
- * @param string {url} URL for post or page
- */
+* Updates the main content for a page or post
+* @param {String} content The content for a post or page
+*/
+view.updateContent = function( content ) {
 
-view.loadContent = function( url ) {
+  var contentEl = helpers.getPageContentEl();
 
-  var pages = model.getPages();
+  contentEl.innerHTML = content;
 
-  for( i = 0, max = pages.length; i < max; i++  ) {
-
-    if (pages[i].slug === url) {
-      
-        return view.loadBlogPost( url, 'page' );
-    
-    } else if ( null === url ) {
-
-        return view.loadBlogPost( 'home', 'page' );
-
-    }
- 
-  }
-  
-  return view.loadBlogPost( url, 'post' );
-}
+};
 
 
 /**
  * Clears the page title and content from the page
  *
  */
-
 view.clearContent = function() {
   var titleEl = helpers.getPageTitleEl(),
       contentEl = helpers.getPageContentEl();
@@ -128,72 +102,42 @@ view.clearContent = function() {
 /**
  * Creates Main Menu Links for Pages
  *
- * @param array {posts} Posts to create links for
- * @return object {mainEl} Final markup for menu
  */
+ view.createMainMenu = function() {
 
-view.loadMenu = function( ) {
+   var pages = model.getPages(),
+       menuMarkup = document.createDocumentFragment(),
+       mainMenuEl = helpers.getMainMenuEl();
 
-  var pages = model.getPages();
-      mainMenu = document.querySelector( '#mainNav ul' );
- 
-  for( i = 0, max = pages.length; i < max; i++  ) {
-  
-    mainMenu.appendChild( view.createMenuItem( pages[i] ) );
-  
-  }
+   for ( var i = 0, max = pages.length; i < max; i++ ) {
+     // Create menu markup
+     menuMarkup.appendChild( helpers.createMenuItem( pages[i] ) );
+   }
 
-}
+   mainMenuEl.appendChild( menuMarkup );
 
-
-/**
- * Creates a Menu Item for a Page
- *
- * @param object {page} Page to create menu item for
- * @return object {menuItemEl} Final markup for menu item
- */
-
-
-view.createMenuItem = function ( page ) {
-  
-  var  menuItemEl = document.createElement( 'li' ),
-       menuLink = document.createElement( 'a' ),
-       menuText = document.createTextNode( page.title );
-       
-  menuLink.appendChild( menuText );
-  menuLink.href = '#' + page.slug;
-  menuItemEl.appendChild( menuLink );
- 
-  return menuItemEl;
-
-}
-
+ };
 
 
 /**
  * Creates Markup for Blog Posts
  *
- * @param object {post} Post to create markup for
- * @return object {articleEl} Final post markup
+ * @param {Object} post Post to create markup for
+ * @return {Object} articleEl Final post markup
  */
-
 view.createPostMarkup = function( post ) {
 
-  var  articleEl = document.createElement( 'article' ),
-       titleEl = document.createElement( 'h3' ),
-       titleLink = document.createElement( 'a' ),
-       titleText = document.createTextNode( post.title ),
-       contentEl = document.createElement( 'div' );
+  var articleEl = document.createElement( 'article' ),
+      titleEl = document.createElement( 'h3' ),
+      titleLink = helpers.createLink( post ),
+      contentEl = document.createElement( 'div' );
 
- titleLink.appendChild( titleText );
- titleLink.href = '#' + post.slug;
- titleEl.appendChild( titleLink );
+  titleEl.appendChild( titleLink );
+  contentEl.appendChild( document.createTextNode( post.content ) );
 
- contentEl.appendChild( document.createTextNode( post.content ) );
+  articleEl.appendChild( titleEl );
+  articleEl.appendChild( contentEl );
 
- articleEl.appendChild( titleEl );
- articleEl.appendChild( contentEl );
-
- return articleEl;
+  return articleEl;
 
 };
