@@ -65,8 +65,8 @@ helpers.getPageTitleEl = function() {
 };
 
 /**
- * Get all links
- * @return {Object} All links
+ * Get links in the view
+ * @return {Object} All links in the view
  */
 helpers.getLinks = function() {
 

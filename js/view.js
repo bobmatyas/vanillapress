@@ -61,6 +61,17 @@ view.loadBlogPosts = function() {
  
 
 /**
+* Updates the main title and content for a page or post
+*
+*/
+view.updateTitleAndContent = function( contentObj ) {
+
+  view.updateTitle( contentObj.title );
+  view.updateContent( contentObj.content );
+
+};
+
+/**
 * Updates the main title for a page or post
 * @param {String} title The title for a post or page
 */

@@ -88,5 +88,13 @@ var posts =
         "title":"Contact",
         "content":"Drop me a line with any questions :)"
       }
-    ]
-    data = JSON.stringify( { "posts": posts, "pages": pages } );
+    ],
+    settings = {
+      "editorHidden":"true"
+    },
+    data = JSON.stringify( { 
+      "posts": posts, 
+      "pages": pages, 
+      "settings": settings 
+    } );
+

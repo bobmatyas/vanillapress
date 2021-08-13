@@ -80,7 +80,6 @@ router.loadContent = function() {
   }
 
   editor.currentContent = contentObj;
-  
   if( false === editorEl.classList.contains( 'hidden' ) ) {
 
     editor.loadEditForm( editor.currentContent );
